@@ -14,7 +14,7 @@ chrome.extension.sendMessage({}, function(response) {
 		clearInterval(readyStateCheckInterval);
 
     var url = window.location.href;
-    if(url.indexOf("app/kibana") >= 0  || url.indexOf("#/discover") >= 0){
+    if(url.indexOf("app/kibana") >= 0  || url.indexOf("#/discover") >= 0 || url.indexOf(":5601") >= 0){
 
       var options = {
         fireOnAttributesModification: true,  // Defaults to false. Setting it to true would make arrive event fire on existing elements which start to satisfy selector after some modification in DOM attributes (an arrive event won't fire twice for a single element even if the option is true). If false, it'd only fire for newly created elements.
@@ -26,7 +26,6 @@ chrome.extension.sendMessage({}, function(response) {
         var alreadyExists = document.getElementById("elastic-csv-exporter");
         if(!alreadyExists)
           injectCSVExportButton();
-
       });
 
       chrome.runtime.sendMessage({"msg": "badge", data: true}, function(){});

@@ -55,11 +55,11 @@ function parseTable(){
     //Replace comma with colon
     h = h.replace(/,/g, ";");
 
-    //Remove multiple-whitespaces
-    h = h.replace(/\s+/g, "");
+    //Remove multiple-whitespaces with one
+    h = h.replace(/\s+/g, ' ');
 
-    //Convert all word characters to lower case
-    h = h.replace(/<\/*\w>/g, function (s) {
+    //Convert all tag word characters to lower case
+    h = h.replace(/<\/*\w+/g, function (s) {
       return s.toLowerCase();
     });
 
@@ -70,10 +70,13 @@ function parseTable(){
     h = h.replace(/<\/tr>/g, "\n");
     h = h.replace(/<\/td>/g, ",");
     h = h.replace(/<\/th>/g, ",");
-    h = h.replace(/<.+?>/g, "");
+    h = h.replace(/( )?<.+?>( )?/g, "");
+
     h = h.replace(/,\n/g, "\n");
     h = h.replace(/\n,/g, "\n");
-    h = h.replace(/^,/, '');
+
+    h = h.replace(/^\s+/g, "");
+    h = h.replace(/^,/g, '');
     csv += h;
   }
   return csv;

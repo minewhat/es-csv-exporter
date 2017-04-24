@@ -9,9 +9,9 @@
  * Credits: This extension is created using Extensionizr , github.com/uzairfarooq/arrive
  */
 chrome.extension.sendMessage({}, function(response) {
-	var readyStateCheckInterval = setInterval(function() {
-	if (document.readyState === "complete") {
-		clearInterval(readyStateCheckInterval);
+  var readyStateCheckInterval = setInterval(function() {
+  if (document.readyState === "complete") {
+    clearInterval(readyStateCheckInterval);
 
     var url = window.location.href;
     if(url.indexOf("app/kibana") >= 0  || url.indexOf("#/discover") >= 0 || url.indexOf(":5601") >= 0){
@@ -36,7 +36,7 @@ chrome.extension.sendMessage({}, function(response) {
       return;
     }
   }
-	}, 10);
+  }, 10);
 });
 
 function setAttributes(el, attrs) {
@@ -149,23 +149,42 @@ function createMessageSlider(){
 
 
 function closeMessageSlider(){
-  var nav = document.getElementsByTagName("navbar")[0];
+  var nav = getMessageSliderElement();
   var wrapperDiv = document.getElementById("csv-message-wrapper");
 
-  if(wrapperDiv)
+  if(nav && wrapperDiv)
     nav.removeChild(wrapperDiv);
 }
 
 function injectMessageSlider(){
   closeMessageSlider();
-  var nav = document.getElementsByTagName("navbar")[0];
   var div = createMessageSlider();
-  nav.appendChild(div);
+  var nav = getMessageSliderElement();
+  if(nav) {
+    nav.appendChild(div);
+  }
+}
+
+function getMessageSliderElement(){
+  var nav = document.getElementsByTagName("navbar")[0];
+  if(!nav) {
+    nav = document.getElementsByClassName("localNav")[0];
+  }
+  return nav;
 }
 
 
 function injectCSVExportButton() {
-  var buttonGroup = document.getElementsByTagName("navbar")[0].getElementsByClassName("button-group");
-  var span = createCSVButton();
-  buttonGroup[0].appendChild(span);
+  var navbar = document.getElementsByTagName("navbar")[0];
+  var buttonGroup;
+  if(navbar) {
+    buttonGroup = navbar.getElementsByClassName("button-group")[0];
+  } else {
+    buttonGroup = document.getElementsByClassName("localBreadcrumb")[0];
+  }
+  
+  if(buttonGroup) {
+    var span = createCSVButton();
+    buttonGroup.appendChild(span);
+  }
 }

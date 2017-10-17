@@ -1,6 +1,6 @@
 {
   "name": "ElasticSearch CSV Exporter",
-  "version": "0.4",
+  "version": "0.5",
   "manifest_version": 2,
   "description": "Missing CSV export feature for Elasticsearch on Kibana Dashboard. Start exporting search results as CSV file from Kibana Discover.",
   "homepage_url": "http://minewhat.com/blog",

@@ -1,6 +1,8 @@
 # es-csv-exporter
 Missing CSV export feature for Elasticsearch on Kibana Dashboard. Install this chrome plugin, go to the Kibana Discover tab and start exporting search results as CSV files.
 
+Tested in Kibana 5.3.2 + Elasticsearch 5.3.x
+
 Tested in Kibana 4.4.2 + ElasticSearch 2.2.x
 
 Tested in Kibana 4.3.3 + ElasticSearch 2.2.x

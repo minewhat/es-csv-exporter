@@ -168,7 +168,7 @@ function injectMessageSlider(){
 function getMessageSliderElement(){
   var nav = document.getElementsByTagName("navbar")[0];
   if(!nav) {
-    nav = document.getElementsByClassName("localNav")[0];
+    nav = document.getElementsByClassName("kuiLocalNav")[0];
   }
   return nav;
 }
@@ -180,7 +180,7 @@ function injectCSVExportButton() {
   if(navbar) {
     buttonGroup = navbar.getElementsByClassName("button-group")[0];
   } else {
-    buttonGroup = document.getElementsByClassName("localBreadcrumb")[0];
+    buttonGroup = document.getElementsByClassName("kuiLocalBreadcrumbs")[0];
   }
   
   if(buttonGroup) {
